@@ -7,6 +7,7 @@ import HomePage from './home/home';
 import { Login } from './auth/login';
 import { Register } from './auth/register';
 import ProductDetails from './product-details/product-details';
+import Cart from '../containers/cart/cart';
 
 import { Helmet } from 'react-helmet';
 
@@ -31,6 +32,7 @@ const App = () => {
                     <Route exact path="/" component={HomePage} />
                     <Route path="/sign-in" component={Login} />
                     <Route path="/register" component={Register} />
+                    <Route path="/cart" component={Cart} />
                     <Route
                         path="/product-details/:type/:id"
                         component={ProductDetails}

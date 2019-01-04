@@ -1,5 +1,6 @@
 import React from 'react';
 import cart from '../../../assets/images/cart.png';
+import { Link } from 'react-router-dom';
 
 class CartCount extends React.Component {
     render() {
@@ -23,7 +24,7 @@ class CartCount extends React.Component {
                     </div>
                     <div className="cart_content">
                         <div className="cart_text">
-                            <a href="javascript:void(0)">Cart</a>
+                            <Link to={'/cart'}>Cart</Link>
                         </div>
                         <div className="cart_price">&#8377; {totalPricing}</div>
                     </div>
