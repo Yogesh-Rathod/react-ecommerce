@@ -5,6 +5,8 @@ import NewsLetter from '../common/newsletter/newsletter';
 import RecentViews from '../common/recents/recents';
 import BestSeller from '../common/bestseller/bestseller';
 import Banners from '../common/banners/banners';
+import Header from '../header/header';
+import Footer from '../footer/footer';
 
 class HomePage extends React.Component {
     render() {
@@ -13,10 +15,12 @@ class HomePage extends React.Component {
                 <Helmet>
                     <title>Home Page</title>
                 </Helmet>
+                <Header />
                 <Banners />
                 <BestSeller />
                 <RecentViews />
                 <NewsLetter />
+                <Footer />
             </div>
         );
     }
