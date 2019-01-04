@@ -1,8 +1,7 @@
-let cartId = 0;
 export const addToCart = product => ({
     type: 'ADD_TO_CART',
-    id: cartId++,
-    product
+    id: product.productInfo.product.id,
+    product: product
 });
 
 export const removeFromCart = product => ({

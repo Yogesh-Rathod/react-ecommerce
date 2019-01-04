@@ -86,18 +86,6 @@ class ProductDetails extends React.Component {
     }
 
     addProductToCart() {
-        console.log('props ', this.props.cartProducts);
-        if (
-            this.props.cartProducts.Cart &&
-            this.props.cartProducts.Cart.length
-        ) {
-            const ccc = this.props.cartProducts.Cart.filter(
-                cartItem =>
-                    cartItem.product.product.id !== this.state.productInfo.id
-            );
-            console.log('ccc ', ccc);
-            // console.log('cartItem ', cartItem);
-        }
         const productInfo = {
             product: this.state.productInfo,
             quantity: this.state.quantity

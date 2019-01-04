@@ -1,7 +1,15 @@
 const Cart = (state = [], action) => {
-    let cartItemToRemove = null;
     switch (action.type) {
         case 'ADD_TO_CART':
+            let itemToRemove = undefined;
+            state.filter((item, index) => {
+                if (item.id === action.id) {
+                    itemToRemove = index;
+                }
+            });
+            if (itemToRemove !== undefined) {
+                state.splice(itemToRemove, 1);
+            }
             return [
                 ...state,
                 {
