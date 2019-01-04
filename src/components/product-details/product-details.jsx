@@ -7,6 +7,8 @@ import Footer from '../footer/footer';
 import axios from 'axios';
 import { addToCart } from '../../actions/index';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 class ProductDetails extends React.Component {
     constructor(props) {
@@ -92,6 +94,7 @@ class ProductDetails extends React.Component {
             type: 'ADD_TO_CART',
             productInfo
         });
+        toast.success('Successfully added to cart.');
     }
 
     updateQuanity(evt) {
@@ -130,6 +133,7 @@ class ProductDetails extends React.Component {
                     <title>Product Details</title>
                 </Helmet>
                 <Header />
+                <ToastContainer />
                 <div className="single_product">
                     <div className="container">
                         <div className="row">
