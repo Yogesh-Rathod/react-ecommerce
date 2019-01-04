@@ -1,9 +1,9 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
-import NewsLetter from '../common/newsletter/newsletter';
-import RecentViews from '../common/recents/recents';
-import Header from '../header/header';
-import Footer from '../footer/footer';
+import NewsLetter from '../../components/common/newsletter/newsletter';
+import RecentViews from '../../components/common/recents/recents';
+import Header from '../../components/header/header';
+import Footer from '../../components/footer/footer';
 import axios from 'axios';
 import { addToCart } from '../../actions/index';
 import { connect } from 'react-redux';
