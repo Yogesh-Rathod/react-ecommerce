@@ -52,7 +52,7 @@ class ProductDetails extends React.Component {
                     url = 'https://api.myjson.com/bins/yags4';
                     break;
                 case 'banner':
-                    url = 'https://api.myjson.com/bins/1e3jnw';
+                    url = 'https://api.myjson.com/bins/rff9g';
                     break;
                 case 'bestseller':
                     url = 'https://api.myjson.com/bins/81wx8';
@@ -84,7 +84,7 @@ class ProductDetails extends React.Component {
     }
 
     addProductToCart() {
-        let productInfo = {
+        const productInfo = {
             product: this.state.productInfo,
             quanity: this.state.quantity
         };
@@ -232,11 +232,7 @@ class ProductDetails extends React.Component {
 
                                             <div className="product_price">
                                                 &#8377;
-                                                {this.state.productInfo.price
-                                                    ? this.state.productInfo
-                                                          .price
-                                                    : this.state.productInfo
-                                                          .newPrice}
+                                                {this.state.productInfo.price}
                                             </div>
                                             <div className="button_container">
                                                 <button

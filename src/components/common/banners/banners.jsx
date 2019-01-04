@@ -14,7 +14,7 @@ class Banners extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://api.myjson.com/bins/1e3jnw`).then(res => {
+        axios.get(`https://api.myjson.com/bins/rff9g`).then(res => {
             this.setState({ banners: res.data });
         });
     }
@@ -57,7 +57,7 @@ class Banners extends React.Component {
                                                             &#8377;
                                                             {item.oldPrice}
                                                         </span>
-                                                        &#8377; {item.newPrice}
+                                                        &#8377; {item.price}
                                                     </div>
                                                     <div className="banner_product_name">
                                                         {item.name}

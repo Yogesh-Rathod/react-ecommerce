@@ -2,7 +2,6 @@ const Cart = (state = [], action) => {
     let cartItemToRemove = null;
     switch (action.type) {
         case 'ADD_TO_CART':
-            console.log('action ', action);
             return [
                 ...state,
                 {

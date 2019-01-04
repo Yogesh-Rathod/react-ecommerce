@@ -5,18 +5,19 @@ import mail from '../../assets/images/mail.png';
 import user from '../../assets/images/user.svg';
 import search from '../../assets/images/search.png';
 import heart from '../../assets/images/heart.png';
-import cart from '../../assets/images/cart.png';
 import phone_white from '../../assets/images/phone_white.png';
 import mail_white from '../../assets/images/mail_white.png';
 
 import axios from 'axios';
 
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
+import CartCount from './cart-count/cart-count';
 
 import Categories from './categories/categories';
 import Menus from './menus/menus';
 
-export default class Header extends React.Component {
+class Header extends React.Component {
     constructor() {
         super();
         this.state = {
@@ -197,26 +198,7 @@ export default class Header extends React.Component {
                                         </div>
                                     </div>
 
-                                    <div className="cart">
-                                        <div className="cart_container d-flex flex-row align-items-center justify-content-end">
-                                            <div className="cart_icon">
-                                                <img src={cart} alt="" />
-                                                <div className="cart_count">
-                                                    <span>0</span>
-                                                </div>
-                                            </div>
-                                            <div className="cart_content">
-                                                <div className="cart_text">
-                                                    <a href="javascript:void(0)">
-                                                        Cart
-                                                    </a>
-                                                </div>
-                                                <div className="cart_price">
-                                                    0
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    <CartCount cart={this.props.cartProducts} />
                                 </div>
                             </div>
                         </div>
@@ -499,3 +481,9 @@ export default class Header extends React.Component {
         );
     }
 }
+
+const mapStateToProps = state => {
+    return { cartProducts: state };
+};
+
+export default connect(mapStateToProps)(Header);
