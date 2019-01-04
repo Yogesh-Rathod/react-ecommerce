@@ -5,6 +5,8 @@ import RecentViews from '../common/recents/recents';
 import Header from '../header/header';
 import Footer from '../footer/footer';
 import axios from 'axios';
+import { addToCart } from '../../actions/index';
+import { connect } from 'react-redux';
 
 class ProductDetails extends React.Component {
     constructor(props) {
@@ -79,6 +81,17 @@ class ProductDetails extends React.Component {
                 });
             });
         }
+    }
+
+    addProductToCart() {
+        let productInfo = {
+            product: this.state.productInfo,
+            quanity: this.state.quantity
+        };
+        this.props.addToCart({
+            type: 'ADD_TO_CART',
+            productInfo
+        });
     }
 
     updateQuanity(evt) {
@@ -229,6 +242,9 @@ class ProductDetails extends React.Component {
                                                 <button
                                                     type="button"
                                                     className="button cart_button"
+                                                    onClick={this.addProductToCart.bind(
+                                                        this
+                                                    )}
                                                 >
                                                     Add to Cart
                                                 </button>
@@ -251,4 +267,17 @@ class ProductDetails extends React.Component {
     }
 }
 
-export default ProductDetails;
+const mapStateToProps = state => {
+    return { cartProducts: state };
+};
+
+const mapDispatchToProps = dispatch => ({
+    addToCart: product => {
+        dispatch(addToCart(product));
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductDetails);
