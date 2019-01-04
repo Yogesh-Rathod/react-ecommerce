@@ -1,8 +1,6 @@
 import React from 'react';
 import cart from '../../../assets/images/cart.png';
 
-import { store } from 'react-redux';
-
 class CartCount extends React.Component {
     render() {
         let totalPricing = 0;

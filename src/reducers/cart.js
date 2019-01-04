@@ -6,6 +6,7 @@ const Cart = (state = [], action) => {
                 if (item.id === action.id) {
                     itemToRemove = index;
                 }
+                return itemToRemove;
             });
             if (itemToRemove !== undefined) {
                 state.splice(itemToRemove, 1);
