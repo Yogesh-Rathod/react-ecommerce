@@ -8,7 +8,10 @@ class CartCount extends React.Component {
         let totalPricing = 0;
         if (this.props.cart.Cart && this.props.cart.Cart.length) {
             this.props.cart.Cart.map(item => {
-                totalPricing += parseInt(item.product.product.price);
+                let itemPricing =
+                    parseInt(item.product.product.price) *
+                    parseInt(item.product.quantity);
+                totalPricing += itemPricing;
             });
         }
         return (

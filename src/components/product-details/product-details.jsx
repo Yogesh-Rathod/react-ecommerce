@@ -86,9 +86,21 @@ class ProductDetails extends React.Component {
     }
 
     addProductToCart() {
+        console.log('props ', this.props.cartProducts);
+        if (
+            this.props.cartProducts.Cart &&
+            this.props.cartProducts.Cart.length
+        ) {
+            const ccc = this.props.cartProducts.Cart.filter(
+                cartItem =>
+                    cartItem.product.product.id !== this.state.productInfo.id
+            );
+            console.log('ccc ', ccc);
+            // console.log('cartItem ', cartItem);
+        }
         const productInfo = {
             product: this.state.productInfo,
-            quanity: this.state.quantity
+            quantity: this.state.quantity
         };
         this.props.addToCart({
             type: 'ADD_TO_CART',
@@ -97,7 +109,7 @@ class ProductDetails extends React.Component {
         toast.success('Successfully added to cart.');
     }
 
-    updateQuanity(evt) {
+    updateQuantity(evt) {
         if (evt.target.value <= 5) {
             this.setState({ quantity: evt.target.value });
         } else {
@@ -105,7 +117,7 @@ class ProductDetails extends React.Component {
         }
     }
 
-    increDescQuanity(type) {
+    increDescQuantity(type) {
         if (this.state.quantity < 5 || type === 'd') {
             switch (type) {
                 case 'i':
@@ -200,7 +212,7 @@ class ProductDetails extends React.Component {
                                                         value={
                                                             this.state.quantity
                                                         }
-                                                        onChange={this.updateQuanity.bind(
+                                                        onChange={this.updateQuantity.bind(
                                                             this
                                                         )}
                                                     />
@@ -209,7 +221,7 @@ class ProductDetails extends React.Component {
                                                             id="quantity_inc_button"
                                                             className="quantity_inc quantity_control"
                                                             onClick={() => {
-                                                                this.increDescQuanity(
+                                                                this.increDescQuantity(
                                                                     'i'
                                                                 );
                                                             }}
@@ -220,7 +232,7 @@ class ProductDetails extends React.Component {
                                                             id="quantity_dec_button"
                                                             className="quantity_dec quantity_control"
                                                             onClick={() => {
-                                                                this.increDescQuanity(
+                                                                this.increDescQuantity(
                                                                     'd'
                                                                 );
                                                             }}
