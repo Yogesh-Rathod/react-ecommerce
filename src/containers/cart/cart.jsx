@@ -9,20 +9,17 @@ import { connect } from 'react-redux';
 import { removeFromCart } from '../../actions/index';
 
 class Cart extends React.Component {
-    constructor() {
-        super();
-    }
-
-    componentDidMount() {
-        console.log('this.props ', this.props.cartProducts.Cart);
-    }
-
-    componentDidUpdate() {
-        console.log('this.props ', this.props.cartProducts.Cart);
-    }
-
     checkOut() {
         toast.success('Successfully checked out!');
+    }
+
+    removeFromCart(_removedItem) {
+        this.props.removeFromCart({
+            type: 'REMOVE_FROM_CART',
+            id: _removedItem.id,
+            _removedItem
+        });
+        toast.success('Successfully removed from cart.');
     }
 
     render() {
@@ -144,7 +141,14 @@ class Cart extends React.Component {
                                                                         <div className="cart_item_title">
                                                                             Remove
                                                                         </div>
-                                                                        <div className="cart_item_text text-center">
+                                                                        <div
+                                                                            className="cart_item_text text-center"
+                                                                            onClick={() => {
+                                                                                this.removeFromCart(
+                                                                                    item
+                                                                                );
+                                                                            }}
+                                                                        >
                                                                             <i className="fa fa-times" />
                                                                         </div>
                                                                     </div>

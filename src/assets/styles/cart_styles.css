@@ -1147,6 +1147,10 @@ select option {
     font-size: 18px;
     margin-top: 35px;
 }
+.cart_item_text .fa-times {
+    cursor: pointer;
+}
+
 .cart_item_text span {
     display: inline-block;
     width: 20px;
