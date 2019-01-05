@@ -1,6 +1,6 @@
 import React from 'react';
-
 import { Helmet } from 'react-helmet';
+
 import NewsLetter from '../common/newsletter/newsletter';
 import RecentViews from '../common/recents/recents';
 import BestSeller from '../common/bestseller/bestseller';

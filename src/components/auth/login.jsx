@@ -1,7 +1,7 @@
 import React from 'react';
+import { Helmet } from 'react-helmet';
 
 import './login.scss';
-import { Helmet } from 'react-helmet';
 
 class Login extends React.Component {
     constructor(props) {

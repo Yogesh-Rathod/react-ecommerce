@@ -1,10 +1,9 @@
 import React from 'react';
-
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 import { Tabs, Tab } from 'react-bootstrap';
 
 import './bestseller.scss';
-import { Link } from 'react-router-dom';
-import axios from 'axios';
 
 class BestSeller extends React.Component {
     constructor(props) {

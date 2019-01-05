@@ -1,14 +1,15 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import axios from 'axios';
+import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 import NewsLetter from '../../components/common/newsletter/newsletter';
 import RecentViews from '../../components/common/recents/recents';
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
-import axios from 'axios';
 import { addToCart } from '../../actions/index';
-import { connect } from 'react-redux';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
 
 class ProductDetails extends React.Component {
     constructor(props) {

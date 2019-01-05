@@ -1,4 +1,7 @@
 import React from 'react';
+import axios from 'axios';
+import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 import phone from '../../assets/images/phone.png';
 import mail from '../../assets/images/mail.png';
@@ -7,13 +10,7 @@ import search from '../../assets/images/search.png';
 import heart from '../../assets/images/heart.png';
 import phone_white from '../../assets/images/phone_white.png';
 import mail_white from '../../assets/images/mail_white.png';
-
-import axios from 'axios';
-
-import { Link } from 'react-router-dom';
-import { connect } from 'react-redux';
 import CartCount from './cart-count/cart-count';
-
 import Categories from './categories/categories';
 import Menus from './menus/menus';
 

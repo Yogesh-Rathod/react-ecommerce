@@ -1,11 +1,12 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
 import { ToastContainer, toast } from 'react-toastify';
+import { connect } from 'react-redux';
+
 import Header from '../../components/header/header';
 import Footer from '../../components/footer/footer';
 import RecentViews from '../../components/common/recents/recents';
 import NewsLetter from '../../components/common/newsletter/newsletter';
-import { connect } from 'react-redux';
 import { removeFromCart } from '../../actions/index';
 import CartItem from '../../components/cart-item/cart-tem';
 
