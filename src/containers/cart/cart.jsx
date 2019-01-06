@@ -12,7 +12,18 @@ import CartItem from '../../components/cart-item/cart-tem';
 
 class Cart extends React.Component {
     checkOut() {
-        toast.success('Successfully checked out!');
+        if (
+            this.props.state.Token &&
+            this.props.state.Token.length &&
+            this.props.state.Token[0].isLoggedIn
+        ) {
+            toast.success('Successfully checked out!');
+        } else {
+            toast.error('Please Login First');
+            setTimeout(() => {
+                this.props.history.push(`/sign-in`);
+            }, 2000);
+        }
     }
 
     removeFromCart(_removedItem) {
@@ -25,17 +36,17 @@ class Cart extends React.Component {
     }
 
     render() {
+        console.log('this.props.state ', this.props.state);
         const show = {
             display:
-                this.props.cartProducts.Cart &&
-                this.props.cartProducts.Cart.length
+                this.props.state.Cart && this.props.state.Cart.length
                     ? 'block'
                     : 'none'
         };
 
         let totalOrderTotal = 0;
         if (show.display === 'block') {
-            this.props.cartProducts.Cart.map(item => {
+            this.props.state.Cart.map(item => {
                 totalOrderTotal +=
                     parseInt(item.product.product.price) *
                     parseInt(item.product.quantity);
@@ -65,8 +76,7 @@ class Cart extends React.Component {
                                                 {show.display === 'block' ? (
                                                     <CartItem
                                                         cartItems={
-                                                            this.props
-                                                                .cartProducts
+                                                            this.props.state
                                                         }
                                                         removeFromCart={this.removeFromCart.bind(
                                                             this
@@ -120,7 +130,7 @@ class Cart extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { cartProducts: state };
+    return { state: state };
 };
 
 const mapDispatchToProps = dispatch => ({

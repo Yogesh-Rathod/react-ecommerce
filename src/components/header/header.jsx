@@ -44,6 +44,23 @@ class Header extends React.Component {
         const show = {
             display: this.state.showCategories ? 'block' : 'none'
         };
+        const isLoogedIn =
+            this.props.state.Token &&
+            this.props.state.Token.length &&
+            this.props.state.Token[0].isLoggedIn ? (
+                <div>
+                    <a href="javascript:void(0)">Logout</a>
+                </div>
+            ) : (
+                <div>
+                    <div>
+                        <Link to={`/register`}>Register</Link>
+                    </div>
+                    <div>
+                        <Link to={`/sign-in`}>Login</Link>
+                    </div>
+                </div>
+            );
 
         return (
             <header className="header">
@@ -125,14 +142,7 @@ class Header extends React.Component {
                                         <div className="user_icon">
                                             <img src={user} alt="" />
                                         </div>
-                                        <div>
-                                            <Link to={`/register`}>
-                                                Register
-                                            </Link>
-                                        </div>
-                                        <div>
-                                            <Link to={`/sign-in`}>Login</Link>
-                                        </div>
+                                        {isLoogedIn}
                                     </div>
                                 </div>
                             </div>
@@ -196,7 +206,7 @@ class Header extends React.Component {
                                         </div>
                                     </div>
 
-                                    <CartCount cart={this.props.cartProducts} />
+                                    <CartCount cart={this.props.state} />
                                 </div>
                             </div>
                         </div>
@@ -481,7 +491,7 @@ class Header extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { cartProducts: state };
+    return { state: state };
 };
 
 export default connect(mapStateToProps)(Header);

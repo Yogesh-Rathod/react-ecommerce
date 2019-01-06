@@ -9,3 +9,13 @@ export const removeFromCart = product => ({
     id: product.id,
     product
 });
+
+export const addToken = token => ({
+    type: 'ADD_TOKEN',
+    token
+});
+
+export const removeToken = token => ({
+    type: 'REMOVE_TOKEN',
+    token
+});

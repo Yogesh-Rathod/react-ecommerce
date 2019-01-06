@@ -2,7 +2,9 @@ import React from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import { Link } from 'react-router-dom';
+import { connect } from 'react-redux';
 
+import { addToken } from '../../actions/index';
 import API_URL from '../../environments/environment';
 import './login.scss';
 
@@ -19,6 +21,10 @@ class Login extends React.Component {
         };
     }
 
+    componentDidMount() {
+        console.log('this.props.auth ', this.props.auth);
+    }
+
     handleSubmit() {
         const requestObject = {
             email: this.state.email,
@@ -28,6 +34,10 @@ class Login extends React.Component {
             console.log('res ', res);
             if (res.status === 200) {
                 this.props.history.push(`/cart`);
+                this.props.addToken({
+                    type: 'ADD_TOKEN',
+                    token: res.data.token
+                });
             }
         });
     }
@@ -159,4 +169,17 @@ class Login extends React.Component {
     }
 }
 
-export { Login };
+const mapStateToProps = state => {
+    return { auth: state };
+};
+
+const mapDispatchToProps = dispatch => ({
+    addToken: token => {
+        dispatch(addToken(token));
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Login);

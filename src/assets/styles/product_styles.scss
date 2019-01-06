@@ -454,10 +454,10 @@ section {
 .top_bar_user div {
     display: inline-block;
 }
-.top_bar_user div:nth-child(2) {
+.top_bar_user div:nth-child(2) div:first-child {
     margin-right: 21px;
 }
-.top_bar_user div:nth-child(2)::after {
+.top_bar_user div:nth-child(2) div:first-child::after {
     display: block;
     position: absolute;
     top: 50%;
