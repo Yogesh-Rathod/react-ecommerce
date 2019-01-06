@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 import phone from '../../assets/images/phone.png';
 import mail from '../../assets/images/mail.png';
@@ -14,6 +15,7 @@ import CartCount from './cart-count/cart-count';
 import Categories from './categories/categories';
 import Menus from './menus/menus';
 import API_URL from '../../environments/environment';
+import { removeToken } from '../../actions/index';
 
 class Header extends React.Component {
     constructor() {
@@ -23,6 +25,18 @@ class Header extends React.Component {
             categories: [],
             menus: []
         };
+    }
+
+    logout() {
+        axios.post(API_URL.loginUrl + 'logout', {}).then(res => {
+            if (res.status === 200) {
+                this.props.removeToken({
+                    type: 'REMOVE_TOKEN',
+                    token: this.props.state.Token
+                });
+                toast.success('Successfully loggedout.');
+            }
+        });
     }
 
     componentDidMount() {
@@ -49,7 +63,12 @@ class Header extends React.Component {
             this.props.state.Token.length &&
             this.props.state.Token[0].isLoggedIn ? (
                 <div>
-                    <a href="javascript:void(0)">Logout</a>
+                    <a
+                        href="javascript:void(0)"
+                        onClick={this.logout.bind(this)}
+                    >
+                        Logout
+                    </a>
                 </div>
             ) : (
                 <div>
@@ -64,6 +83,7 @@ class Header extends React.Component {
 
         return (
             <header className="header">
+                <ToastContainer />
                 <div className="top_bar">
                     <div className="container">
                         <div className="row">
@@ -494,4 +514,13 @@ const mapStateToProps = state => {
     return { state: state };
 };
 
-export default connect(mapStateToProps)(Header);
+const mapDispatchToProps = dispatch => ({
+    removeToken: token => {
+        dispatch(removeToken(token));
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(Header);

@@ -9,13 +9,7 @@ const Token = (state = [], action) => {
                 }
             ];
         case 'REMOVE_TOKEN':
-            return [
-                ...state,
-                {
-                    token: undefined,
-                    isLoggedIn: false
-                }
-            ];
+            return (state = []);
         default:
             return state;
     }

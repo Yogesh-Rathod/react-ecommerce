@@ -31,7 +31,6 @@ class Login extends React.Component {
             password: this.state.password
         };
         axios.post(API_URL.loginUrl + 'login', requestObject).then(res => {
-            console.log('res ', res);
             if (res.status === 200) {
                 this.props.history.push(`/cart`);
                 this.props.addToken({
