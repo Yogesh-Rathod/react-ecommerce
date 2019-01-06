@@ -1,6 +1,9 @@
 import React from 'react';
+import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
 
+import API_URL from '../../environments/environment';
 import './login.scss';
 
 class Login extends React.Component {
@@ -14,6 +17,18 @@ class Login extends React.Component {
             passwordValid: false,
             formValid: false
         };
+    }
+
+    handleSubmit() {
+        const requestObject = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        axios.post(API_URL.loginUrl + 'login', requestObject).then(res => {
+            console.log('res ', res);
+            if (res.status === 200) {
+            }
+        });
     }
 
     handleUserInput(e) {
@@ -80,7 +95,11 @@ class Login extends React.Component {
                                 <h2>Login</h2>
                                 <p>Please enter your email and password</p>
                             </div>
-                            <form id="Login" action="javascript:void(0)">
+                            <form
+                                id="Login"
+                                action="javascript:void(0)"
+                                onSubmit={this.handleSubmit.bind(this)}
+                            >
                                 <div className="form-group">
                                     <input
                                         type="email"
@@ -115,10 +134,13 @@ class Login extends React.Component {
                                         }
                                     />
                                 </div>
-                                <div className="forgot">
+                                <div className="forgot float-left">
                                     <a href="javascript:void(0)">
                                         Forgot password?
                                     </a>
+                                </div>
+                                <div className="forgot float-right">
+                                    <Link to={`/register`}>Register</Link>
                                 </div>
                                 <button
                                     type="submit"

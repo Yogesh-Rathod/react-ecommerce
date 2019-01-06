@@ -2,7 +2,8 @@ const API_URL = {
     bestSeller: `http://localhost:5000/products/getTop20`,
     banners: `http://localhost:5000/products/getBanners`,
     recents: `http://localhost:5000/products/getRecents`,
-    categories: `http://localhost:5000/products/getCategories`
+    categories: `http://localhost:5000/products/getCategories`,
+    loginUrl: `http://localhost:5000/users/`
 };
 
 // const API_URL = {

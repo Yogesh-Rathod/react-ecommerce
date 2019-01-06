@@ -1,6 +1,10 @@
 import React from 'react';
 import { Helmet } from 'react-helmet';
+import { Link } from 'react-router-dom';
+import axios from 'axios';
+import { ToastContainer, toast } from 'react-toastify';
 
+import API_URL from '../../environments/environment';
 import './login.scss';
 
 class Register extends React.Component {
@@ -15,6 +19,32 @@ class Register extends React.Component {
             passwordValid: false,
             formValid: false
         };
+    }
+
+    handleSubmit() {
+        const requestObject = {
+            email: this.state.email,
+            password: this.state.password
+        };
+        axios.post(API_URL.loginUrl, requestObject).then(res => {
+            console.log('res ', res);
+            if (res.status === 200) {
+                toast.success('Successfully Registered. Please Login');
+                this.setState({
+                    email: '',
+                    password: '',
+                    confirmPassword: '',
+                    formErrors: {
+                        email: '',
+                        password: '',
+                        confirmPassword: ''
+                    },
+                    emailValid: false,
+                    passwordValid: false,
+                    formValid: false
+                });
+            }
+        });
     }
 
     handleUserInput(e) {
@@ -84,13 +114,18 @@ class Register extends React.Component {
                 <Helmet>
                     <title>Register Page</title>
                 </Helmet>
+                <ToastContainer />
                 <div className="container">
                     <div className="login-form">
                         <div className="main-div">
                             <div className="panel">
                                 <h2>Register</h2>
                             </div>
-                            <form id="Register" action="javascript:void(0)">
+                            <form
+                                id="Register"
+                                action="javascript:void(0)"
+                                onSubmit={this.handleSubmit.bind(this)}
+                            >
                                 <div className="form-group">
                                     <input
                                         type="email"
@@ -141,6 +176,9 @@ class Register extends React.Component {
                                             this.handleUserInput(event)
                                         }
                                     />
+                                </div>
+                                <div className="forgot float-left">
+                                    <Link to={`/sign-in`}>Login</Link>
                                 </div>
                                 <button
                                     type="submit"
