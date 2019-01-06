@@ -4,6 +4,7 @@ import Slider from 'react-slick';
 
 import banner_background from '../../../assets/images/banner_background.jpg';
 import { Link } from 'react-router-dom';
+import API_URL from '../../../environments/environment';
 
 class Banners extends React.Component {
     constructor(props) {
@@ -14,7 +15,7 @@ class Banners extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://api.myjson.com/bins/rff9g`).then(res => {
+        axios.get(API_URL.banners).then(res => {
             this.setState({ banners: res.data });
         });
     }

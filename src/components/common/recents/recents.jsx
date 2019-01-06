@@ -2,6 +2,7 @@ import React from 'react';
 import axios from 'axios';
 import Slider from 'react-slick';
 import { Link } from 'react-router-dom';
+import API_URL from '../../../environments/environment';
 
 class RecentViews extends React.Component {
     constructor(props) {
@@ -12,7 +13,7 @@ class RecentViews extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://api.myjson.com/bins/yags4`).then(res => {
+        axios.get(API_URL.recents).then(res => {
             this.setState({ recents: res.data });
         });
     }

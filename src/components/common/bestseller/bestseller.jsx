@@ -4,6 +4,7 @@ import axios from 'axios';
 import { Tabs, Tab } from 'react-bootstrap';
 
 import './bestseller.scss';
+import API_URL from '../../../environments/environment';
 
 class BestSeller extends React.Component {
     constructor(props) {
@@ -15,7 +16,8 @@ class BestSeller extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://api.myjson.com/bins/81wx8`).then(res => {
+        axios.get(API_URL.bestSeller).then(res => {
+            console.log('res ', res);
             this.setState({ bestSeller: res.data });
         });
     }

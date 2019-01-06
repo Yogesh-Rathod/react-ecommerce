@@ -13,6 +13,7 @@ import mail_white from '../../assets/images/mail_white.png';
 import CartCount from './cart-count/cart-count';
 import Categories from './categories/categories';
 import Menus from './menus/menus';
+import API_URL from '../../environments/environment';
 
 class Header extends React.Component {
     constructor() {
@@ -25,7 +26,7 @@ class Header extends React.Component {
     }
 
     componentDidMount() {
-        axios.get(`https://api.myjson.com/bins/md7uk`).then(res => {
+        axios.get(API_URL.categories).then(res => {
             this.setState({
                 categories: res.data.categories,
                 menus: res.data.menus
