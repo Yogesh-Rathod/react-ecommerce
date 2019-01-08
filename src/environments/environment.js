@@ -3,7 +3,8 @@ const API_URL = {
     banners: `http://localhost:5000/products/getBanners`,
     recents: `http://localhost:5000/products/getRecents`,
     categories: `http://localhost:5000/products/getCategories`,
-    loginUrl: `http://localhost:5000/users/`
+    loginUrl: `http://localhost:5000/users/`,
+    productsUrl: `http://localhost:5000/products/cart`
 };
 
 // const API_URL = {

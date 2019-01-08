@@ -269,7 +269,7 @@ class ProductDetails extends React.Component {
 }
 
 const mapStateToProps = state => {
-    return { cartProducts: state };
+    return { state: state };
 };
 
 const mapDispatchToProps = dispatch => ({
