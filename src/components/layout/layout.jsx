@@ -6,7 +6,6 @@ import RecentViews from '../common/recents/recents';
 import NewsLetter from '../common/newsletter/newsletter';
 
 const Layout = props => {
-    console.log('props.children ', props);
     return (
         <div>
             <Header />

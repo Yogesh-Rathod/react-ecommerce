@@ -24,7 +24,6 @@ const App = () => {
                     <title>Home Page</title>
                 </Helmet>
                 <Switch>
-                    <div>
                         <Route path="/sign-in" component={Login} />
                         <Route path="/register" component={Register} />
                         <Layout path="/">
@@ -36,7 +35,6 @@ const App = () => {
                             />
                         </Layout>
                         {/* <Route path="*" component={NotFound} /> */}
-                    </div>
                 </Switch>
             </div>
         </Router>

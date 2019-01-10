@@ -19,7 +19,6 @@ class ProductDetails extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
-        console.log('prevProps ', prevProps);
         if (this.props.location !== prevProps.location) {
             this.setState({
                 productInfo: {},
@@ -32,6 +31,7 @@ class ProductDetails extends React.Component {
     }
 
     componentDidMount() {
+        console.log('props', this.props.state);
         let url = '',
             productType = '',
             bestSellerType = '';
