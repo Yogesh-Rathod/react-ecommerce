@@ -5,10 +5,6 @@ import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
-import NewsLetter from '../../components/common/newsletter/newsletter';
-import RecentViews from '../../components/common/recents/recents';
-import Header from '../../components/header/header';
-import Footer from '../../components/footer/footer';
 import { addToCart } from '../../actions/index';
 
 class ProductDetails extends React.Component {
@@ -133,7 +129,6 @@ class ProductDetails extends React.Component {
                 <Helmet>
                     <title>Product Details</title>
                 </Helmet>
-                <Header />
                 <ToastContainer />
                 <div className="single_product">
                     <div className="container">
@@ -260,9 +255,6 @@ class ProductDetails extends React.Component {
                         </div>
                     </div>
                 </div>
-                <RecentViews />
-                <NewsLetter />
-                <Footer />
             </div>
         );
     }
