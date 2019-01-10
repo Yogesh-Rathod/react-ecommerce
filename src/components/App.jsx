@@ -24,17 +24,19 @@ const App = () => {
                     <title>Home Page</title>
                 </Helmet>
                 <Switch>
-                    <Route path="/sign-in" component={Login} />
-                    <Route path="/register" component={Register} />
-                    <Layout>
-                        <Route exact path="/" component={HomePage} />
-                        <Route path="/cart" component={Cart} />
-                        <Route
-                            path="/product-details/:type/:id"
-                            component={ProductDetails}
-                        />
-                        <Route path="*" component={NotFound} />
-                    </Layout>
+                    <div>
+                        <Route path="/sign-in" component={Login} />
+                        <Route path="/register" component={Register} />
+                        <Layout path="/">
+                            <Route exact path="/" component={HomePage} />
+                            <Route path="/cart" component={Cart} />
+                            <Route
+                                path="/product-details/:type/:id"
+                                component={ProductDetails}
+                            />
+                        </Layout>
+                        {/* <Route path="*" component={NotFound} /> */}
+                    </div>
                 </Switch>
             </div>
         </Router>

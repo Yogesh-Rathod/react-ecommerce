@@ -19,6 +19,7 @@ class ProductDetails extends React.Component {
     }
 
     componentDidUpdate(prevProps) {
+        console.log('prevProps ', prevProps);
         if (this.props.location !== prevProps.location) {
             this.setState({
                 productInfo: {},
