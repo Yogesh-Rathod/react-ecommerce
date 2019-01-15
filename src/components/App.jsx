@@ -24,17 +24,18 @@ const App = () => {
                     <title>Home Page</title>
                 </Helmet>
                 <Switch>
-                        <Route path="/sign-in" component={Login} />
-                        <Route path="/register" component={Register} />
-                        <Layout path="/">
-                            <Route exact path="/" component={HomePage} />
-                            <Route path="/cart" component={Cart} />
-                            <Route
-                                path="/product-details/:type/:id"
-                                component={ProductDetails}
-                            />
-                        </Layout>
-                        {/* <Route path="*" component={NotFound} /> */}
+                    <Route path="/sign-in" component={Login} />
+                    <Route path="/register" component={Register} />
+                    <Layout path="/">
+                        <Route exact path="/" component={HomePage} />
+                        <Route path="/cart" component={Cart} />
+                        <Route
+                            path="/product-details/:type/:id"
+                            component={ProductDetails}
+                        />
+                    </Layout>
+                    https://ecommerce-application.herokuapp.com/
+                    {/* <Route path="*" component={NotFound} /> */}
                 </Switch>
             </div>
         </Router>
