@@ -1,6 +1,7 @@
 import React from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
+import InputRange from 'react-input-range';
 
 import ShopItem from '../../components/shop-item/item';
 import API_URL from '../../environments/environment';
@@ -9,6 +10,7 @@ class ProductListing extends React.Component {
     constructor() {
         super();
         this.state = {
+            priceValue: { min: 0, max: 10 },
             products: [],
             unFilteredProducts: [],
             categories: [],
@@ -159,6 +161,9 @@ class ProductListing extends React.Component {
                                 <div className="shop_sidebar">
                                     <div className="sidebar_section">
                                         <div className="sidebar_title">
+                                            Filter By
+                                        </div>
+                                        <div className="sidebar_subtitle">
                                             Categories
                                         </div>
                                         {this.state.categories &&
@@ -197,25 +202,21 @@ class ProductListing extends React.Component {
                                         )}
                                     </div>
                                     <div className="sidebar_section filter_by_section">
-                                        <div className="sidebar_title">
-                                            Filter By
-                                        </div>
                                         <div className="sidebar_subtitle">
                                             Price
                                         </div>
                                         <div className="filter_price">
-                                            <div
-                                                id="slider-range"
-                                                className="slider_range"
+                                            {/* <p>Range: </p> */}
+                                            <InputRange
+                                                maxValue={20}
+                                                minValue={0}
+                                                value={this.state.priceValue}
+                                                onChange={value =>
+                                                    this.setState({
+                                                        priceValue: value
+                                                    })
+                                                }
                                             />
-                                            <p>Range: </p>
-                                            <p>
-                                                <input
-                                                    type="text"
-                                                    id="amount"
-                                                    className="amount"
-                                                />
-                                            </p>
                                         </div>
                                     </div>
                                     <div className="sidebar_section">
