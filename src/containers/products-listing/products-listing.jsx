@@ -90,9 +90,12 @@ class ProductListing extends React.Component {
 
     filterByBrand(brand) {
         if (this.state.selectedBrand !== brand) {
-            this.setState({ selectedBrand: brand }, () => {
-                this.updateProductsWithBrandFilters(brand);
-            });
+            this.setState(
+                { selectedBrand: brand, selectedCategory: '' },
+                () => {
+                    this.updateProductsWithBrandFilters(brand);
+                }
+            );
         } else {
             this.setState({ selectedBrand: '' }, () => {
                 this.updateProductsWithBrandFilters(brand);
@@ -115,9 +118,12 @@ class ProductListing extends React.Component {
 
     filterByCategories(category) {
         if (this.state.selectedCategory !== category) {
-            this.setState({ selectedCategory: category }, () => {
-                this.updateProductsWithCategoryFilters(category);
-            });
+            this.setState(
+                { selectedCategory: category, selectedBrand: '' },
+                () => {
+                    this.updateProductsWithCategoryFilters(category);
+                }
+            );
         } else {
             this.setState({ selectedCategory: '' }, () => {
                 this.updateProductsWithCategoryFilters(category);
