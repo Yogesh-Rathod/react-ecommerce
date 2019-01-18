@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 
 const Categories = props => {
     return (
@@ -6,10 +7,7 @@ const Categories = props => {
             {props.categories.map((category, index) => {
                 return (
                     <li key={index}>
-                        <a href="javascript:void(0)">
-                            {category}
-                            <i className="fas fa-chevron-right ml-auto" />
-                        </a>
+                        <Link to={`/product-listing`}>{category}</Link>
                     </li>
                 );
             })}

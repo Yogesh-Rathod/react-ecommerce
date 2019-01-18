@@ -11,6 +11,7 @@ import '../assets/styles/app.scss';
 import { createBrowserHistory } from 'history';
 import NotFound from './not-found/not-found';
 import Layout from './layout/layout';
+import ProductListing from '../containers/products-listing/products-listing';
 
 createBrowserHistory().listen(() => {
     window.scrollTo(0, 0);
@@ -33,8 +34,12 @@ const App = () => {
                             path="/product-details/:type/:id"
                             component={ProductDetails}
                         />
+                        <Route
+                            path="/product-listing"
+                            component={ProductListing}
+                        />
                     </Layout>
-                    https://ecommerce-application.herokuapp.com/
+                    {/* https://ecommerce-application.herokuapp.com/ */}
                     {/* <Route path="*" component={NotFound} /> */}
                 </Switch>
             </div>

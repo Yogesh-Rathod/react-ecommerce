@@ -1461,7 +1461,7 @@ select option {
 }
 .product_image {
     width: 100%;
-    height: 115px;
+    // height: 115px;
 }
 .product_image img {
     display: block;
@@ -3217,3 +3217,4 @@ select option {
 
 @import './product_styles.scss';
 @import './cart_styles.css';
+@import './shop_styles.css';
