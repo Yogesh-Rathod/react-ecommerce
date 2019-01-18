@@ -23,9 +23,13 @@ const ShopItem = props => {
                 <i className="fas fa-heart" />
             </div>
             <ul className="product_marks">
-                <li className="product_mark product_new">
-                    {props.productInfo.discount}
-                </li>
+                {props.productInfo.discount ? (
+                    <li className="product_mark product_new">
+                        {props.productInfo.discount}
+                    </li>
+                ) : (
+                    ''
+                )}
             </ul>
         </div>
     );
