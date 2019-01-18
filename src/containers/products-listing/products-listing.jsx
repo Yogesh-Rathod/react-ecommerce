@@ -10,7 +10,10 @@ class ProductListing extends React.Component {
     constructor() {
         super();
         this.state = {
-            priceValue: { min: 0, max: 10 },
+            priceValue: {
+                selected: { min: 0, max: 10 },
+                minMax: { min: 0, max: 10 }
+            },
             products: [],
             unFilteredProducts: [],
             categories: [],
@@ -28,8 +31,10 @@ class ProductListing extends React.Component {
                 products: res.data,
                 unFilteredProducts: res.data
             });
+            let prices = [];
             const brands = [];
             this.state.products.map(item => {
+                prices.push(parseInt(item.price));
                 if (brands.indexOf(item.brand) === -1) {
                     brands.push(item.brand);
                 }
@@ -42,11 +47,24 @@ class ProductListing extends React.Component {
                     }
                 });
             });
+            prices.sort((a, b) => {
+                return a - b;
+            });
+            const minMax = {
+                minMax: {
+                    min: prices[0],
+                    max: prices[prices.length - 1]
+                },
+                selected: {
+                    min: prices[0],
+                    max: prices[prices.length - 1]
+                }
+            };
             this.setState({
+                priceValue: minMax,
                 brands: brands,
                 categories: categories
             });
-            console.log('this.state ', this.state);
         });
     }
 
@@ -148,6 +166,16 @@ class ProductListing extends React.Component {
         });
     }
 
+    updatePrice(value) {
+        const selectedValue = {
+            ...this.state.priceValue,
+            selected: value
+        };
+        this.setState({
+            priceValue: selectedValue
+        });
+    }
+
     render() {
         return (
             <div>
@@ -208,13 +236,20 @@ class ProductListing extends React.Component {
                                         <div className="filter_price">
                                             {/* <p>Range: </p> */}
                                             <InputRange
-                                                maxValue={20}
-                                                minValue={0}
-                                                value={this.state.priceValue}
+                                                maxValue={
+                                                    this.state.priceValue.minMax
+                                                        .max
+                                                }
+                                                minValue={
+                                                    this.state.priceValue.minMax
+                                                        .min
+                                                }
+                                                value={
+                                                    this.state.priceValue
+                                                        .selected
+                                                }
                                                 onChange={value =>
-                                                    this.setState({
-                                                        priceValue: value
-                                                    })
+                                                    this.updatePrice(value)
                                                 }
                                             />
                                         </div>
