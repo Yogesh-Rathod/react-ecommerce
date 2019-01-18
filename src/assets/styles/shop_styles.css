@@ -1576,6 +1576,11 @@ select option {
 .brand {
     margin-bottom: 7px;
 }
+
+.brand.active a {
+    color: #007bff;
+    border-bottom: 1px solid #007bff;
+}
 .brand a {
     color: rgba(0, 0, 0, 0.5);
     -webkit-transition: all 200ms ease;

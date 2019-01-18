@@ -10,6 +10,7 @@ class ProductListing extends React.Component {
         super();
         this.state = {
             products: [],
+            unFilteredProducts: [],
             categories: [],
             brands: [],
             sort: {
@@ -22,7 +23,8 @@ class ProductListing extends React.Component {
     componentDidMount() {
         axios.get(API_URL.shopUrl).then(res => {
             this.setState({
-                products: res.data
+                products: res.data,
+                unFilteredProducts: res.data
             });
             const brands = [];
             this.state.products.map(item => {
@@ -81,9 +83,60 @@ class ProductListing extends React.Component {
                 return 0;
             }
         });
-        console.log('sortedProducts ', sortedProducts);
         this.setState({
             products: sortedProducts
+        });
+    }
+
+    filterByBrand(brand) {
+        if (this.state.selectedBrand !== brand) {
+            this.setState({ selectedBrand: brand }, () => {
+                this.updateProductsWithBrandFilters(brand);
+            });
+        } else {
+            this.setState({ selectedBrand: '' }, () => {
+                this.updateProductsWithBrandFilters(brand);
+            });
+        }
+    }
+
+    updateProductsWithBrandFilters(brand) {
+        let filteredProducts = this.state.unFilteredProducts.filter(item => {
+            if (this.state.selectedBrand) {
+                return item.brand === brand;
+            } else {
+                return item;
+            }
+        });
+        this.setState({
+            products: filteredProducts
+        });
+    }
+
+    filterByCategories(category) {
+        if (this.state.selectedCategory !== category) {
+            this.setState({ selectedCategory: category }, () => {
+                this.updateProductsWithCategoryFilters(category);
+            });
+        } else {
+            this.setState({ selectedCategory: '' }, () => {
+                this.updateProductsWithCategoryFilters(category);
+            });
+        }
+    }
+
+    updateProductsWithCategoryFilters(category) {
+        let filteredProducts = this.state.unFilteredProducts.filter(item => {
+            if (this.state.selectedCategory) {
+                if (item.categories.indexOf(category) > -1) {
+                    return item;
+                }
+            } else {
+                return item;
+            }
+        });
+        this.setState({
+            products: filteredProducts
         });
     }
 
@@ -109,10 +162,23 @@ class ProductListing extends React.Component {
                                                     (item, index) => {
                                                         return (
                                                             <li
-                                                                className="brand"
+                                                                className={
+                                                                    this.state
+                                                                        .selectedCategory ===
+                                                                    item
+                                                                        ? 'active brand'
+                                                                        : 'brand'
+                                                                }
                                                                 key={index}
                                                             >
-                                                                <a href="javascript:void(0)">
+                                                                <a
+                                                                    href="javascript:void(0)"
+                                                                    onClick={() => {
+                                                                        this.filterByCategories(
+                                                                            item
+                                                                        );
+                                                                    }}
+                                                                >
                                                                     {item}
                                                                 </a>
                                                             </li>
@@ -157,10 +223,23 @@ class ProductListing extends React.Component {
                                                     (item, index) => {
                                                         return (
                                                             <li
-                                                                className="brand"
+                                                                className={
+                                                                    this.state
+                                                                        .selectedBrand ===
+                                                                    item
+                                                                        ? 'active brand'
+                                                                        : 'brand'
+                                                                }
                                                                 key={index}
                                                             >
-                                                                <a href="javascript:void(0)">
+                                                                <a
+                                                                    href="javascript:void(0)"
+                                                                    onClick={() => {
+                                                                        this.filterByBrand(
+                                                                            item
+                                                                        );
+                                                                    }}
+                                                                >
                                                                     {item}
                                                                 </a>
                                                             </li>
