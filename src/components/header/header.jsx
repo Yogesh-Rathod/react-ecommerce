@@ -176,7 +176,7 @@ class Header extends React.Component {
                             <div className="col-lg-2 col-sm-3 col-3 order-1">
                                 <div className="logo_container">
                                     <div className="logo">
-                                        <a href="javascript:void(0)">OneTech</a>
+                                        <Link to={`/`}>OneTech</Link>
                                     </div>
                                 </div>
                             </div>
