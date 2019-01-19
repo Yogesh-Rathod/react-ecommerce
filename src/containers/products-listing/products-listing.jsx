@@ -174,6 +174,18 @@ class ProductListing extends React.Component {
         this.setState({
             priceValue: selectedValue
         });
+        this.filterByPrice(value);
+    }
+
+    filterByPrice(priceRange) {
+        let filteredProducts = this.state.unFilteredProducts.filter(item => {
+            if (item.price >= priceRange.min && item.price <= priceRange.max) {
+                return item;
+            }
+        });
+        this.setState({
+            products: filteredProducts
+        });
     }
 
     render() {
