@@ -10,6 +10,11 @@ export const removeFromCart = product => ({
     product
 });
 
+export const addToWishList = product => ({
+    type: 'ADD_TO_WISHLIST',
+    product: product
+});
+
 export const addToken = token => ({
     type: 'ADD_TOKEN',
     token

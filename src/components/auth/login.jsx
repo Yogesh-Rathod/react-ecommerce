@@ -21,10 +21,6 @@ class Login extends React.Component {
         };
     }
 
-    componentDidMount() {
-        console.log('this.props.auth ', this.props.auth);
-    }
-
     handleSubmit() {
         const requestObject = {
             email: this.state.email,

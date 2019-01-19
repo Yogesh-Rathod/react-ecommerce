@@ -32,7 +32,6 @@ class Cart extends React.Component {
     }
 
     render() {
-        console.log('this.props.state ', this.props.state);
         const show = {
             display:
                 this.props.state.Cart && this.props.state.Cart.length

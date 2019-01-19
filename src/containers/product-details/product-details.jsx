@@ -31,7 +31,6 @@ class ProductDetails extends React.Component {
     }
 
     componentDidMount() {
-        console.log('props', this.props.state);
         let url = '',
             productType = '',
             bestSellerType = '';

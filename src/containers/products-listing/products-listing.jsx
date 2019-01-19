@@ -2,9 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { Helmet } from 'react-helmet';
 import InputRange from 'react-input-range';
+import { connect } from 'react-redux';
+import { ToastContainer, toast } from 'react-toastify';
 
 import ShopItem from '../../components/shop-item/item';
 import API_URL from '../../environments/environment';
+import { addToWishList } from '../../actions/index';
 
 class ProductListing extends React.Component {
     constructor() {
@@ -175,7 +178,6 @@ class ProductListing extends React.Component {
                 return item;
             }
         });
-        console.log('filteredProducts ', filteredProducts);
         this.setState({
             products: filteredProducts
         });
@@ -203,12 +205,28 @@ class ProductListing extends React.Component {
         });
     }
 
+    addProductToWishList(selectedProduct) {
+        const wishListProducts = this.state.products.map((item, index) => {
+            if (selectedProduct.id === item.id) {
+                item.isWishList = !item.isWishList;
+            }
+            return item;
+        });
+        this.setState({ products: wishListProducts });
+        this.props.addToWishList({
+            type: 'ADD_TO_WISHLIST',
+            selectedProduct
+        });
+        toast.success('Successfully added to wishlist.');
+    }
+
     render() {
         return (
             <div>
                 <Helmet>
                     <title>Product Listing Page</title>
                 </Helmet>
+                <ToastContainer />
                 <div className="shop">
                     <div className="container">
                         <div className="row">
@@ -377,6 +395,9 @@ class ProductListing extends React.Component {
                                                       <ShopItem
                                                           productInfo={item}
                                                           key={item.id}
+                                                          addToWishList={this.addProductToWishList.bind(
+                                                              this
+                                                          )}
                                                       />
                                                   );
                                               })
@@ -392,4 +413,17 @@ class ProductListing extends React.Component {
     }
 }
 
-export default ProductListing;
+const mapStateToProps = state => {
+    return { state: state };
+};
+
+const mapDispatchToProps = dispatch => ({
+    addToWishList: product => {
+        dispatch(addToWishList(product));
+    }
+});
+
+export default connect(
+    mapStateToProps,
+    mapDispatchToProps
+)(ProductListing);

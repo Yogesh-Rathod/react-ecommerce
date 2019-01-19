@@ -17,7 +17,6 @@ class BestSeller extends React.Component {
 
     componentDidMount() {
         axios.get(API_URL.bestSeller).then(res => {
-            console.log('res ', res);
             this.setState({ bestSeller: res.data });
         });
     }

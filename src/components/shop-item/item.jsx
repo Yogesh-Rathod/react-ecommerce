@@ -19,7 +19,16 @@ const ShopItem = props => {
                     </div>
                 </div>
             </div>
-            <div className="product_fav">
+            <div
+                className={
+                    props.productInfo.isWishList
+                        ? 'product_fav active'
+                        : 'product_fav'
+                }
+                onClick={() => {
+                    props.addToWishList(props.productInfo);
+                }}
+            >
                 <i className="fas fa-heart" />
             </div>
             <ul className="product_marks">

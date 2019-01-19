@@ -27,7 +27,6 @@ class Register extends React.Component {
             password: this.state.password
         };
         axios.post(API_URL.loginUrl, requestObject).then(res => {
-            console.log('res ', res);
             if (res.status === 200) {
                 toast.success('Successfully Registered. Please Login');
                 this.setState({
