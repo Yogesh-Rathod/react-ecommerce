@@ -8,7 +8,6 @@ import phone from '../../assets/images/phone.png';
 import mail from '../../assets/images/mail.png';
 import user from '../../assets/images/user.svg';
 import search from '../../assets/images/search.png';
-import heart from '../../assets/images/heart.png';
 import phone_white from '../../assets/images/phone_white.png';
 import mail_white from '../../assets/images/mail_white.png';
 import CartCount from './cart-count/cart-count';
@@ -16,6 +15,7 @@ import Categories from './categories/categories';
 import Menus from './menus/menus';
 import API_URL from '../../environments/environment';
 import { removeToken } from '../../actions/index';
+import WishList from './wishlist/wishlist';
 
 class Header extends React.Component {
     constructor() {
@@ -210,22 +210,7 @@ class Header extends React.Component {
 
                             <div className="col-lg-4 col-9 order-lg-3 order-2 text-lg-left text-right">
                                 <div className="wishlist_cart d-flex flex-row align-items-center justify-content-end">
-                                    <div className="wishlist d-flex flex-row align-items-center justify-content-end">
-                                        <div className="wishlist_icon">
-                                            <img src={heart} alt="" />
-                                        </div>
-                                        <div className="wishlist_content">
-                                            <div className="wishlist_text">
-                                                <a href="javascript:void(0)">
-                                                    Wishlist
-                                                </a>
-                                            </div>
-                                            <div className="wishlist_count">
-                                                115
-                                            </div>
-                                        </div>
-                                    </div>
-
+                                    <WishList cart={this.props.state} />
                                     <CartCount cart={this.props.state} />
                                 </div>
                             </div>
