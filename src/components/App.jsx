@@ -35,7 +35,7 @@ const App = () => {
                             component={ProductDetails}
                         />
                         <Route
-                            path="/product-listing"
+                            path="/product-listing/:category?"
                             component={ProductListing}
                         />
                     </Layout>

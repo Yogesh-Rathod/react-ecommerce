@@ -7,7 +7,9 @@ const Categories = props => {
             {props.categories.map((category, index) => {
                 return (
                     <li key={index}>
-                        <Link to={`/product-listing`}>{category}</Link>
+                        <Link to={`/product-listing/${category}`}>
+                            {category}
+                        </Link>
                     </li>
                 );
             })}

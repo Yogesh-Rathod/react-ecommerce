@@ -60,12 +60,26 @@ class ProductListing extends React.Component {
                     max: prices[prices.length - 1]
                 }
             };
-            this.setState({
-                priceValue: minMax,
-                brands: brands,
-                categories: categories
-            });
+            this.setState(
+                {
+                    priceValue: minMax,
+                    brands: brands,
+                    categories: categories
+                },
+                () => {
+                    this.updateWithUrlParams();
+                }
+            );
         });
+    }
+
+    updateWithUrlParams() {
+        if (this.props && this.props.match && this.props.match.params) {
+            this.setState({
+                selectedCategory: this.props.match.params.category
+            });
+            this.filterByCategories(this.props.match.params.category);
+        }
     }
 
     sortProducts(criteria) {
@@ -161,6 +175,7 @@ class ProductListing extends React.Component {
                 return item;
             }
         });
+        console.log('filteredProducts ', filteredProducts);
         this.setState({
             products: filteredProducts
         });
