@@ -217,7 +217,7 @@ class ProductListing extends React.Component {
             type: 'ADD_TO_WISHLIST',
             selectedProduct
         });
-        toast.success('Successfully added to wishlist.');
+        toast.success('Successfully Done.');
     }
 
     render() {
