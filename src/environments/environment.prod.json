@@ -1,0 +1,9 @@
+{
+    "bestSeller": "https: //ecommerce-application.herokuapp.com/products/getTop20",
+    "banners": "https: //ecommerce-application.herokuapp.com/products/getBanners",
+    "recents": "https: //ecommerce-application.herokuapp.com/products/getRecents",
+    "categories": "https: //ecommerce-application.herokuapp.com/products/getCategories",
+    "loginUrl": "https: //ecommerce-application.herokuapp.com/users/",
+    "productsUrl": "https: //ecommerce-application.herokuapp.com/products/cart",
+    "shopUrl": "https: //ecommerce-application.herokuapp.com/products/getFilterProducts"
+}

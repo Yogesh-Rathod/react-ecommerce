@@ -14,6 +14,4 @@ switch (process.env.REACT_APP_ENV) {
         API_URL = DevApi.default;
         break;
 }
-
-console.log("API_URL ", API_URL);
 export default API_URL;
