@@ -5,6 +5,7 @@ import { connect } from 'react-redux';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
+import Loader from '../../components/loader/loader';
 import { addToCart } from '../../actions/index';
 
 class ProductDetails extends React.Component {
@@ -14,7 +15,10 @@ class ProductDetails extends React.Component {
             productInfo: {},
             sliderImage: [],
             currentImage: '',
-            quantity: 1
+            quantity: 1,
+            loaders: {
+                productInfo: false
+            }
         };
     }
 
@@ -59,6 +63,7 @@ class ProductDetails extends React.Component {
                 default:
                     break;
             }
+            this.setState({ loaders: { productInfo: true } });
             axios.get(url).then(res => {
                 let allProducts = res.data;
                 const sliderImages = [];
@@ -69,7 +74,7 @@ class ProductDetails extends React.Component {
                 currentProduct = arrayToCall.filter((product, index) => {
                     sliderImages.push(product.image);
                     if (product.id === parseInt(this.props.match.params.id)) {
-                        this.setState({ currentImage: product.image });
+                        this.setState({ currentImage: product.image, loaders: { productInfo: false } });
                     }
                     return product.id === parseInt(this.props.match.params.id);
                 });
@@ -132,127 +137,133 @@ class ProductDetails extends React.Component {
                 <ToastContainer />
                 <div className="single_product">
                     <div className="container">
-                        <div className="row">
-                            <div className="col-lg-2 order-lg-1 order-2">
-                                <ul className="image_list">
-                                    {this.state.sliderImages &&
-                                    this.state.sliderImages.length
-                                        ? this.state.sliderImages.map(
-                                              (image, index) => {
-                                                  return (
-                                                      <li
-                                                          key={index}
-                                                          data-image={image}
-                                                          onClick={() => {
-                                                              this.updateCurrentImage(
-                                                                  image
-                                                              );
-                                                          }}
-                                                      >
-                                                          <img
-                                                              src={image}
-                                                              alt=""
-                                                          />
-                                                      </li>
-                                                  );
-                                              }
-                                          )
-                                        : 'No Images Available'}
-                                </ul>
-                            </div>
+                        {
+                            this.state.loaders.productInfo
+                                ? <Loader></Loader>
+                                :
+                                <div className="row">
+                                    <div className="col-lg-2 order-lg-1 order-2">
+                                        <ul className="image_list">
+                                            {this.state.sliderImages &&
+                                                this.state.sliderImages.length
+                                                ? this.state.sliderImages.map(
+                                                    (image, index) => {
+                                                        return (
+                                                            <li
+                                                                key={index}
+                                                                data-image={image}
+                                                                onClick={() => {
+                                                                    this.updateCurrentImage(
+                                                                        image
+                                                                    );
+                                                                }}
+                                                            >
+                                                                <img
+                                                                    src={image}
+                                                                    alt=""
+                                                                />
+                                                            </li>
+                                                        );
+                                                    }
+                                                )
+                                                : 'No Images Available'}
+                                        </ul>
+                                    </div>
 
-                            <div className="col-lg-5 order-lg-2 order-1">
-                                <div className="image_selected">
-                                    <img src={this.state.currentImage} alt="" />
-                                </div>
-                            </div>
+                                    <div className="col-lg-5 order-lg-2 order-1">
+                                        <div className="image_selected">
+                                            <img src={this.state.currentImage} alt="" />
+                                        </div>
+                                    </div>
 
-                            <div className="col-lg-5 order-3">
-                                <div className="product_description">
-                                    <div className="product_category">
-                                        {this.state.productInfo.name}
-                                    </div>
-                                    <div className="product_name">
-                                        {this.state.productInfo.name}
-                                    </div>
-                                    <div className="product_text">
-                                        <p>
-                                            {this.state.productInfo.description}
-                                        </p>
-                                    </div>
-                                    <div className="order_info d-flex flex-row">
-                                        <form action="#">
-                                            <div
-                                                className="clearfix"
-                                                // style="z-index: 1000;"
-                                            >
-                                                <div className="product_quantity clearfix">
-                                                    <span>Quantity: </span>
-                                                    <input
-                                                        id="quantity_input"
-                                                        name="quantity_input"
-                                                        type="text"
-                                                        pattern="[0-9]*"
-                                                        value={
-                                                            this.state.quantity
-                                                        }
-                                                        onChange={this.updateQuantity.bind(
-                                                            this
-                                                        )}
-                                                    />
-                                                    <div className="quantity_buttons">
-                                                        <div
-                                                            id="quantity_inc_button"
-                                                            className="quantity_inc quantity_control"
-                                                            onClick={() => {
-                                                                this.increDescQuantity(
-                                                                    'i'
-                                                                );
-                                                            }}
-                                                        >
-                                                            <i className="fas fa-chevron-up" />
-                                                        </div>
-                                                        <div
-                                                            id="quantity_dec_button"
-                                                            className="quantity_dec quantity_control"
-                                                            onClick={() => {
-                                                                this.increDescQuantity(
-                                                                    'd'
-                                                                );
-                                                            }}
-                                                        >
-                                                            <i
-                                                                className="fas fa-chevron-down"
-                                                                name="downArrow"
+                                    <div className="col-lg-5 order-3">
+                                        <div className="product_description">
+                                            <div className="product_category">
+                                                {this.state.productInfo.name}
+                                            </div>
+                                            <div className="product_name">
+                                                {this.state.productInfo.name}
+                                            </div>
+                                            <div className="product_text">
+                                                <p>
+                                                    {this.state.productInfo.description}
+                                                </p>
+                                            </div>
+                                            <div className="order_info d-flex flex-row">
+                                                <form action="#">
+                                                    <div
+                                                        className="clearfix"
+                                                    // style="z-index: 1000;"
+                                                    >
+                                                        <div className="product_quantity clearfix">
+                                                            <span>Quantity: </span>
+                                                            <input
+                                                                id="quantity_input"
+                                                                name="quantity_input"
+                                                                type="text"
+                                                                pattern="[0-9]*"
+                                                                value={
+                                                                    this.state.quantity
+                                                                }
+                                                                onChange={this.updateQuantity.bind(
+                                                                    this
+                                                                )}
                                                             />
+                                                            <div className="quantity_buttons">
+                                                                <div
+                                                                    id="quantity_inc_button"
+                                                                    className="quantity_inc quantity_control"
+                                                                    onClick={() => {
+                                                                        this.increDescQuantity(
+                                                                            'i'
+                                                                        );
+                                                                    }}
+                                                                >
+                                                                    <i className="fas fa-chevron-up" />
+                                                                </div>
+                                                                <div
+                                                                    id="quantity_dec_button"
+                                                                    className="quantity_dec quantity_control"
+                                                                    onClick={() => {
+                                                                        this.increDescQuantity(
+                                                                            'd'
+                                                                        );
+                                                                    }}
+                                                                >
+                                                                    <i
+                                                                        className="fas fa-chevron-down"
+                                                                        name="downArrow"
+                                                                    />
+                                                                </div>
+                                                            </div>
                                                         </div>
                                                     </div>
-                                                </div>
-                                            </div>
 
-                                            <div className="product_price">
-                                                &#8377;
+                                                    <div className="product_price">
+                                                        &#8377;
                                                 {this.state.productInfo.price}
-                                            </div>
-                                            <div className="button_container">
-                                                <button
-                                                    type="button"
-                                                    className="button cart_button"
-                                                    onClick={this.addProductToCart.bind(
-                                                        this
-                                                    )}
-                                                >
-                                                    Add to Cart
+                                                    </div>
+                                                    <div className="button_container">
+                                                        <button
+                                                            type="button"
+                                                            className="button cart_button"
+                                                            onClick={this.addProductToCart.bind(
+                                                                this
+                                                            )}
+                                                        >
+                                                            Add to Cart
                                                 </button>
-                                                <div className="product_fav">
-                                                    <i className="fas fa-heart" />
-                                                </div>
+                                                        <div className="product_fav">
+                                                            <i className="fas fa-heart" />
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
-                                        </form>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
+                        }
+
                     </div>
                 </div>
             </div>

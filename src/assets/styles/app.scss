@@ -3219,3 +3219,14 @@ select option {
 @import './product_styles.scss';
 @import './cart_styles.scss';
 @import './shop_styles.scss';
+
+
+.loaderContainer {
+    text-align: center;
+    background: #fff;
+    padding: 20px 0;
+
+    img {
+        width: 50px;
+    }
+}
